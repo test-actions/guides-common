@@ -1,4 +1,4 @@
-while getopts u:a:f: flag
+while getopts du:dp:gt: flag
 do
     case "${flag}" in
         -du) DOCKER_USERNAME=${OPTARG};;
@@ -39,10 +39,10 @@ for ((i=0; i < $devBuildSize; i++)); do
     
     sed -i '/&& wget/c\&& wget http://public.dhe.ibm.com/ibmdl/export/pub/software/openliberty/runtime/nightly/'$DEVDATE'/'$currentDevDriver' -U UA-Open-Liberty-Docker -O /tmp/wlp.zip \\' Dockerfile.ubuntu.adoptopenjdk8
     sed -i '/&& sha1sum/d' Dockerfile.ubuntu.adoptopenjdk8
-    cat Dockerfile.ubuntu.adoptopenjdk8
+    #cat Dockerfile.ubuntu.adoptopenjdk8
     echo "Building $BUILDLEVEL from $DEVDATE"
-    docker build -q -t $DOCKER_USERNAME/olguides:$BUILDLEVEL -f Dockerfile.ubuntu.adoptopenjdk8 .
-    docker push $DOCKER_USERNAME/olguides:$BUILDLEVEL
+    #docker build -q -t $DOCKER_USERNAME/olguides:$BUILDLEVEL -f Dockerfile.ubuntu.adoptopenjdk8 .
+    #docker push $DOCKER_USERNAME/olguides:$BUILDLEVEL
     
     # Trigger daily builds for this OL build
     for GUIDE in "${GUIDES_TO_BUILD[@]}"; do
