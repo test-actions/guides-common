@@ -16,6 +16,6 @@ jobs:
       - uses: actions/checkout@v2
       - name: Trigger builds
         run: .github/workflows/daily-build.sh \
-             -gt ${{secrets.GUIDECONVERSIONTOOL_PASSWORD}} \
+             -gt ${{secrets.ACTION_TOKEN}} \
              -du ${{secrets.DOCKER_USERNAME}} \
              -dp ${{secrets.DOCKER_PASSWORD}}
