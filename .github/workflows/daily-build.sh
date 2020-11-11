@@ -3,7 +3,7 @@ do
     case "${flag}" in
         -du) DOCKER_USERNAME=${OPTARG};;
         -dp) DOCKER_PASSWORD=${OPTARG};;
-        -gt) GH_TOKEN=${OPTARG};;
+        -gt) ACTION_TOKEN=${OPTARG};;
     esac
 done
 
@@ -49,7 +49,7 @@ for ((i=0; i < $devBuildSize; i++)); do
         echo "Triggering build for $GUIDE"
         curl -X POST -q \
             -H "Accept: application/vnd.github.v3+json" \
-            -H "Authorization: token $GH_TOKEN" \
+            -H "Authorization: token $ACTION_TOKEN" \
             https://api.github.com/repos/test-actions/$GUIDE/dispatches \
             -d "{\"event_type\":\"daily-build\", \"client_payload\": { \"dev-date\": \"$DEVDATE\", \"dev-build\": \"$currentDevDriver\" }}"
     done
