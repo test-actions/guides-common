@@ -3,8 +3,6 @@ name: Build Docker Image
 on:
   repository_dispatch:
     types: [ daily-build ]
-  schedule:
-    - cron: 0 0 * * *
 
 jobs:
   build:
