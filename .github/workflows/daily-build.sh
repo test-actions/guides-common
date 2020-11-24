@@ -17,8 +17,8 @@ do
     echo $GUIDE
 done
 
-git clone https://github.com/OpenLiberty/ci.docker.git
-cd ci.docker/releases/latest/kernel-slim
+#git clone https://github.com/OpenLiberty/ci.docker.git
+#cd ci.docker/releases/latest/kernel-slim
 
 echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
 
@@ -45,13 +45,13 @@ for ((i=0; i < $devBuildSize; i++)); do
     #docker push $DOCKER_USERNAME/olguides:$BUILDLEVEL
     
     # Trigger daily builds for this OL build
-    for GUIDE in "${GUIDES_TO_BUILD[@]}"; do
-        echo "Triggering build for $GUIDE"
-        curl -X POST -q \
-            -H "Accept: application/vnd.github.v3+json" \
-            -H "Authorization: token $ACTION_TOKEN" \
-            https://api.github.com/repos/test-actions/$GUIDE/dispatches \
-            -d "{\"event_type\":\"daily-build\", \"client_payload\": { \"dev-date\": \"$DEVDATE\", \"dev-build\": \"$currentDevDriver\" }}"
-    done
+    #for GUIDE in "${GUIDES_TO_BUILD[@]}"; do
+    #    echo "Triggering build for $GUIDE"
+    #    curl -X POST -q \
+    #        -H "Accept: application/vnd.github.v3+json" \
+    #        -H "Authorization: token $ACTION_TOKEN" \
+    #        https://api.github.com/repos/test-actions/$GUIDE/dispatches \
+    #        -d "{\"event_type\":\"daily-build\", \"client_payload\": { \"dev-date\": \"$DEVDATE\", \"dev-build\": \"$currentDevDriver\" }}"
+    #done
     fi
 done
